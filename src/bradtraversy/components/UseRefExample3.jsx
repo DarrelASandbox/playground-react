@@ -1,8 +1,9 @@
-import { useState } from 'react'
-import Todo from './Todo'
+// Memory Leak Error Fix
+import { useState } from 'react';
+import Todo from './Todo';
 
 function UseRefExample3() {
-  const [showTodo, setShowTodo] = useState(true)
+  const [showTodo, setShowTodo] = useState(true);
 
   return (
     <div>
@@ -14,7 +15,7 @@ function UseRefExample3() {
         Toggle Todo
       </button>
     </div>
-  )
+  );
 }
 
-export default UseRefExample3
+export default UseRefExample3;

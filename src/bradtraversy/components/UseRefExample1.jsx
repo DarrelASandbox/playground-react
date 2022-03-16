@@ -1,16 +1,17 @@
-import { useRef } from 'react'
+import { useRef } from 'react';
 
+// Create DOM Reference
 function UseRefExample1() {
-  const inputRef = useRef()
-  const paraRef = useRef()
+  const inputRef = useRef();
+  const paraRef = useRef();
 
   const onSubmit = (e) => {
-    e.preventDefault()
-    console.log(inputRef.current.value)
-    inputRef.current.value = 'Hello'
-    inputRef.current.style.backgroundColor = 'red'
-    paraRef.current.innerText = 'Goodbye'
-  }
+    e.preventDefault();
+    console.log(inputRef.current.value);
+    inputRef.current.value = 'Hello';
+    inputRef.current.style.backgroundColor = 'red';
+    paraRef.current.innerText = 'Goodbye';
+  };
 
   return (
     <div>
@@ -30,7 +31,7 @@ function UseRefExample1() {
         </p>
       </form>
     </div>
-  )
+  );
 }
 
-export default UseRefExample1
+export default UseRefExample1;

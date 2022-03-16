@@ -1,15 +1,16 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react';
 
+// Get Previous State
 function UseRefExample2() {
-  const [name, setName] = useState('')
+  const [name, setName] = useState('');
 
-  const renders = useRef(1)
-  const prevName = useRef('')
+  const renders = useRef(1);
+  const prevName = useRef('');
 
   useEffect(() => {
-    renders.current = renders.current + 1
-    prevName.current = name
-  }, [name])
+    renders.current = renders.current + 1;
+    prevName.current = name;
+  }, [name]);
 
   return (
     <div>
@@ -22,7 +23,7 @@ function UseRefExample2() {
         className='form-control mb-3'
       />
     </div>
-  )
+  );
 }
 
-export default UseRefExample2
+export default UseRefExample2;
