@@ -405,37 +405,32 @@ My mini-app (below), is similar to above, except; it doesn't have the asynchrono
 // export default App;
 
 /***************************************************************************************/
+// Custom HTTP Hook
+
 import { useEffect, useState } from 'react';
 import NewTask from './maximilian_schwarzmüller/components-custom-http-hook/NewTask/NewTask';
 import Tasks from './maximilian_schwarzmüller/components-custom-http-hook/Tasks/Tasks';
+import useHttp from './maximilian_schwarzmüller/hooks-custom-http-hook/use-http';
 
 function App() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [tasks, setTasks] = useState([]);
 
-  const fetchTasks = async (taskText) => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const response = await fetch(
-        `${process.env.REACT_APP_FIREBASE_URI}/tasks.json`
-      );
-
-      if (!response.ok) throw new Error('Request failed!');
-      const data = await response.json();
-      const loadedTasks = [];
-
-      for (const taskKey in data) {
-        loadedTasks.push({ id: taskKey, text: data[taskKey].text });
-      }
-
-      setTasks(loadedTasks);
-    } catch (err) {
-      setError(err.message || 'Something went wrong!');
+  const transformTasks = (tasksObj) => {
+    const loadedTasks = [];
+    for (const taskKey in tasksObj) {
+      loadedTasks.push({ id: taskKey, text: tasksObj[taskKey].text });
     }
-    setIsLoading(false);
+    setTasks(loadedTasks);
   };
+
+  const {
+    isLoading,
+    error,
+    sendRequest: fetchTasks,
+  } = useHttp(
+    { url: `${process.env.REACT_APP_FIREBASE_URI}/tasks.json` },
+    transformTasks
+  );
 
   useEffect(() => fetchTasks(), []);
 
