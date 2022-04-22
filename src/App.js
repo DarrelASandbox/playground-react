@@ -414,25 +414,22 @@ import useHttp from './maximilian_schwarzmüller/hooks-custom-http-hook/use-http
 
 function App() {
   const [tasks, setTasks] = useState([]);
+  const { isLoading, error, sendRequest: fetchTasks } = useHttp();
 
-  const transformTasks = (tasksObj) => {
-    const loadedTasks = [];
-    for (const taskKey in tasksObj) {
-      loadedTasks.push({ id: taskKey, text: tasksObj[taskKey].text });
-    }
-    setTasks(loadedTasks);
-  };
+  useEffect(() => {
+    const transformTasks = (tasksObj) => {
+      const loadedTasks = [];
+      for (const taskKey in tasksObj) {
+        loadedTasks.push({ id: taskKey, text: tasksObj[taskKey].text });
+      }
+      setTasks(loadedTasks);
+    };
 
-  const {
-    isLoading,
-    error,
-    sendRequest: fetchTasks,
-  } = useHttp(
-    { url: `${process.env.REACT_APP_FIREBASE_URI}/tasks.json` },
-    transformTasks
-  );
-
-  useEffect(() => fetchTasks(), []);
+    fetchTasks(
+      { url: `${process.env.REACT_APP_FIREBASE_URI}/tasks.json` },
+      transformTasks
+    );
+  }, [fetchTasks]);
 
   const taskAddHandler = (task) =>
     setTasks((prevTasks) => prevTasks.concat(task));
