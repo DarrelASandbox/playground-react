@@ -362,25 +362,43 @@ My mini-app (below), is similar to above, except; it doesn't have the asynchrono
 /***************************************************************************************/
 // Optimizing with useMemo()
 
-import { useCallback, useMemo, useState } from 'react';
-import './maximilian_schwarzmüller/App.css';
-import DemoList from './maximilian_schwarzmüller/components_usememo/Demo/DemoList';
-import Button from './maximilian_schwarzmüller/components_usememo/UI/Button/Button';
+// import { useCallback, useMemo, useState } from 'react';
+// import './maximilian_schwarzmüller/App.css';
+// import DemoList from './maximilian_schwarzmüller/components_usememo/Demo/DemoList';
+// import Button from './maximilian_schwarzmüller/components_usememo/UI/Button/Button';
+
+// function App() {
+//   const [listTitle, setListTitle] = useState('My List');
+
+//   const changeTitleHandler = useCallback(() => {
+//     setListTitle('New Title');
+//   }, []);
+
+//   const listItems = useMemo(() => [5, 3, 1, 10, 9], []);
+
+//   return (
+//     <div className="app">
+//       <DemoList title={listTitle} items={listItems} />
+//       <Button onClick={changeTitleHandler}>Change List Title</Button>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+/***************************************************************************************/
+// Custom Hooks
+
+import React from 'react';
+import BackwardCounter from './maximilian_schwarzmüller/components-custom-hooks/BackwardCounter';
+import ForwardCounter from './maximilian_schwarzmüller/components-custom-hooks/ForwardCounter';
 
 function App() {
-  const [listTitle, setListTitle] = useState('My List');
-
-  const changeTitleHandler = useCallback(() => {
-    setListTitle('New Title');
-  }, []);
-
-  const listItems = useMemo(() => [5, 3, 1, 10, 9], []);
-
   return (
-    <div className="app">
-      <DemoList title={listTitle} items={listItems} />
-      <Button onClick={changeTitleHandler}>Change List Title</Button>
-    </div>
+    <React.Fragment>
+      <ForwardCounter />
+      <BackwardCounter />
+    </React.Fragment>
   );
 }
 
