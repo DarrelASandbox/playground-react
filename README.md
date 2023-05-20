@@ -1,6 +1,6 @@
 ## About The Project
 
-- Refer to respective README files in the folders titled with the author name in the src folder.
+- Please refer to the corresponding README files located in each sub-folder within the 'src' folder.
 
 &nbsp;
 
